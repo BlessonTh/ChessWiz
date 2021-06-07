@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    n = int(input())
+    n = int(input("The number of elements"))
     arr = list(map(int, input().split()))
     import sys
     Max=arr[0]
