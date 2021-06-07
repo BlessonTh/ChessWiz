@@ -1,6 +1,7 @@
 if __name__ == '__main__':
     n = int(input("The number of elements: "))
     arr = list(map(int, input("Enter the elements of the list:").split()))
+    print("Let me think...")
     import sys
     Max=arr[0]
     r=sys.maxsize
@@ -13,5 +14,5 @@ if __name__ == '__main__':
         elif arr[i]<Max:
             if arr[i]>r:
                 r=arr[i]
-            
-    print(r)
+    
+    print(r,"that's the answer!")
