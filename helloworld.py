@@ -1,6 +1,6 @@
 if __name__ == '__main__':
-    n = int(input("The number of elements"))
-    arr = list(map(int, input().split()))
+    n = int(input("The number of elements: "))
+    arr = list(map(int, input("Enter the elements of the list:").split()))
     import sys
     Max=arr[0]
     r=sys.maxsize
