@@ -17,7 +17,7 @@ public class Move {
 	}
 
 	@Override
-	public String toString() {s
+	public String toString() {
 		return BitBoard.getPositionAtCoordinate(this.currentLocation) + "-"
 		        + BitBoard.getPositionAtCoordinate(this.destinationLocation);
 	}
