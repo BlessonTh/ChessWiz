@@ -61,7 +61,52 @@ public final class Board {
         return "-";
     }
 
- 
+     public Collection<Piece> getBlackPieces() {
+        return this.blackPieces;
+    }
+
+    public Collection<Piece> getWhitePieces() {
+        return this.whitePieces;
+    }
+
+    public Collection<Piece> getAllPieces() {
+        return Stream.concat(this.whitePieces.stream(),
+                             this.blackPieces.stream()).collect(Collectors.toList());
+    }
+
+    public Collection<Move> getAllLegalMoves() {
+        return Stream.concat(this.whitePlayer.getLegalMoves().stream(),
+                             this.blackPlayer.getLegalMoves().stream()).collect(Collectors.toList());
+    }
+
+    public WhitePlayer whitePlayer() {
+        return this.whitePlayer;
+    }
+
+    public BlackPlayer blackPlayer() {
+        return this.blackPlayer;
+    }
+
+    public Player currentPlayer() {
+        return this.currentPlayer;
+    }
+
+    public Piece getPiece(final int coordinate) {
+        return this.boardConfig.get(coordinate);
+    }
+
+    public Pawn getEnPassantPawn() {
+        return this.enPassantPawn;
+    }
+
+    public Move getTransitionMove() {
+        return this.transitionMove;
+    }
+
+    public static Board createStandardBoard() {
+        return STANDARD_BOARD;
+    }
+
     private static Board createStandardBoardImpl() {
         final Builder builder = new Builder();
         // Black Layout
@@ -124,7 +169,33 @@ public final class Board {
         Move transitionMove;
 
        
+        public Builder() {
+            this.boardConfig = new HashMap<>(32, 1.0f);
+        }
 
+        public Builder setPiece(final Piece piece) {
+            this.boardConfig.put(piece.getPiecePosition(), piece);
+            return this;
+        }
+
+        public Builder setMoveMaker(final Alliance nextMoveMaker) {
+            this.nextMoveMaker = nextMoveMaker;
+            return this;
+        }
+
+        public Builder setEnPassantPawn(final Pawn enPassantPawn) {
+            this.enPassantPawn = enPassantPawn;
+            return this;
+        }
+
+        public Builder setMoveTransition(final Move transitionMove) {
+            this.transitionMove = transitionMove;
+            return this;
+        }
+
+        public Board build() {
+            return new Board(this);
+        }
     }
 
 }
